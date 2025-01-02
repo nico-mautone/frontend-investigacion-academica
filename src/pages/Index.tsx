@@ -31,7 +31,7 @@ const Index = () => {
     <main className="min-h-screen flex flex-col items-center justify-center p-6">
       <div className="search-container w-full max-w-4xl mx-auto text-center space-y-12">
         <h1 className="text-4xl sm:text-5xl font-semibold text-gray-900 tracking-tight">
-          What can I help with?
+          What can I help with? MODIFIED FOR TESTING
         </h1>
         <SearchInput onSearch={handleSearch} />
       </div>
