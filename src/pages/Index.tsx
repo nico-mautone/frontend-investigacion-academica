@@ -21,7 +21,7 @@ const Index = () => {
       // Prepare context from previous messages
       const context = messages.map(msg => ({
         query: msg.query,
-        response: msg.response
+        response: msg.response.answer
       }));
 
       const response = await fetch("http://localhost:8000/query", {
