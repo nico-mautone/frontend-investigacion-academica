@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Search } from "lucide-react";
+import { Search, Loader2 } from "lucide-react";
 
 interface SearchInputProps {
   onSearch: (query: string) => void;
+  isLoading?: boolean;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
+const SearchInput: React.FC<SearchInputProps> = ({ onSearch, isLoading = false }) => {
   const [query, setQuery] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -25,11 +26,20 @@ const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
           placeholder="Message ChatGPT"
           className="search-input"
           aria-label="Search input"
+          disabled={isLoading}
         />
         <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
       </div>
-      <button type="submit" className="search-button">
-        Send
+      <button 
+        type="submit" 
+        className="search-button"
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          "Send"
+        )}
       </button>
     </form>
   );

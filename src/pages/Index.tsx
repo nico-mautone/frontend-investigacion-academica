@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchInput from "../components/SearchInput";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 interface Message {
   query: string;
@@ -10,16 +11,28 @@ interface Message {
 
 const Index = () => {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async (query: string) => {
     try {
+      setIsLoading(true);
       console.log("Sending search query:", query);
+
+      // Prepare context from previous messages
+      const context = messages.map(msg => ({
+        query: msg.query,
+        response: msg.response
+      }));
+
       const response = await fetch("http://localhost:8000/query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ 
+          query,
+          context 
+        }),
       });
 
       if (!response.ok) {
@@ -40,6 +53,8 @@ const Index = () => {
     } catch (error) {
       console.error("Search error:", error);
       toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -76,7 +91,7 @@ const Index = () => {
           </div>
         )}
         
-        <SearchInput onSearch={handleSearch} />
+        <SearchInput onSearch={handleSearch} isLoading={isLoading} />
       </div>
     </main>
   );
