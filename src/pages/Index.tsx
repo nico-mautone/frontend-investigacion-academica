@@ -6,7 +6,7 @@ const Index = () => {
   const handleSearch = async (query: string) => {
     try {
       console.log("Sending search query:", query);
-      const response = await fetch("http://localhost:3000/api/search", {
+      const response = await fetch("http://localhost:8000/query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
