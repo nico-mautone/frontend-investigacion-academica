@@ -83,7 +83,7 @@ const Index = () => {
                     You: {message.query}
                   </p>
                   <p className="text-gray-600">
-                    Response: {JSON.stringify(message.response)}
+                    Response: {message.response.answer}
                   </p>
                 </div>
               </div>
