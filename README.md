@@ -1,4 +1,4 @@
-# Frontend for academic rag chatbot
+# Frontend for academic chatbot
 
 ## Run this code
 
