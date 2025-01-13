@@ -27,7 +27,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Message ChatGPT"
+            placeholder="Ask academic chatbot..."
             className="search-input"
             aria-label="Search input"
             disabled={isLoading}
